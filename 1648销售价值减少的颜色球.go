@@ -1,4 +1,4 @@
-package leetcode周赛
+package theAlgorithm
 
 // 1648. 销售价值减少的颜色球
 
