@@ -5,6 +5,8 @@ package theAlgorithm
 
 
 func maxProfit(inventory []int, orders int) int {
+
+	
 	// 取模
 	var mod int64 = 1e9 + 7
 	theMax := 0

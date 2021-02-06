@@ -1,7 +1,8 @@
 package theAlgorithm
 
-//  https://leetcode-cn.com/problems/largest-rectangle-in-histogram/submissions/
+import "fmt"
 
+//  https://leetcode-cn.com/problems/largest-rectangle-in-histogram/submissions/
 
 // 暴力，超时
 func largestRectangleArea(heights []int) int {
@@ -36,7 +37,6 @@ func max(a, b int) int {
 	return b
 }
 
-
 // 单调栈
 
 // 遍历每个柱体，
@@ -45,5 +45,23 @@ func max(a, b int) int {
 // 那么就可以将栈顶柱体出栈来计算以其为高的矩形的面积了。
 
 func largestRectangleArea2(heights []int) int {
+	// 增加哨兵
+	heights = append([]int{0}, heights...)
+	heights = append(heights, 0)
 
+	ans := 0
+	var stack []int
+
+	// 循环
+	for i := 0; i < len(heights); i++ {
+		if len(stack) > 0 && stack[len(stack)-1] > heights[i] {
+			//计算栈顶元素
+			h := heights[stack[len(stack)-1]]
+			stack = stack[:len(stack)-1]
+			fmt.Println(h,i,stack[len(stack)-1])
+			ans = max(ans, h*(i-stack[len(stack)-1]-1))
+		}
+		stack = append(stack, i)
+	}
+	return ans
 }
